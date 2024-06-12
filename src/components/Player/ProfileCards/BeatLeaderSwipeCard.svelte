@@ -60,13 +60,13 @@
 
 <div class="beatleader-swipe-card">
 	{#if selectedOption}
-		<div class="chart">
-			<svelte:component this={chartComponent} {...chartComponentProps} on:height-changed />
-		</div>
-
 		<div class="chart-switcher">
 			<Switcher values={switcherOptions} value={selectedOption} on:change={onSwitcherChanged} />
 		</div>
+
+		<div class="chart">
+			<svelte:component this={chartComponent} {...chartComponentProps} on:height-changed />
+		</div>A
 	{/if}
 </div>
 
