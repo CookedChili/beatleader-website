@@ -226,7 +226,6 @@
 	.clans-title {
 		font-size: small;
 		font-weight: 600;
-		text-decoration-line: underline;
 	}
 
 	.clanTag {

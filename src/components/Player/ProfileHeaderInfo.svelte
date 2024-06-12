@@ -346,7 +346,12 @@
 				{/each}
 			{/if}
 
-			<div class="a">
+			<a
+				style="flex: none"
+				href={`/ranking/${Math.floor((rank - 1) / PLAYERS_PER_PAGE) + 1}`}
+				on:click|preventDefault={() => navigateToGlobalRanking(rank)}
+				title="Go to global ranking">
+
 				<Value
 					value={playerInfo?.pp}
 					suffix="pp"
@@ -354,7 +359,8 @@
 					{prevLabel}
 					inline={true}
 					zero="0pp" />
-			</div>
+			</a>		
+
 
 			{#if $configStore.profileParts.clans && playerInfo?.clans?.length}
 				<div class="clan-badges">
@@ -458,6 +464,7 @@
 		display: flex;
 		flex-direction: column;
 		font-size: 3em;
+		text-shadow: 2px 2px 4px #252525;
 		font-weight: bold;
 		align-items: baseline;
 		margin-right: 3em;
@@ -498,6 +505,7 @@
 		flex-wrap: wrap;
 		grid-gap: 0.7em;
 		font-size: 1.25em;
+		text-shadow: 1px 1px 2px #252525;
 		font-weight: 500;
 		align-items: center;
 	}

@@ -69,9 +69,8 @@
 		gap: 0.4em;
 	}
 	.platform-title {
-		font-size: small;
+		font-size: medium;
 		font-weight: 600;
-		text-decoration-line: underline;
 	}
 	.platform-entry {
 		display: flex;
