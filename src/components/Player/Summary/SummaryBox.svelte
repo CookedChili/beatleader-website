@@ -43,28 +43,12 @@
 	}
 
 	$: history = $historyStore[playerId];
-	$: prevPp = history?.pp ? history.pp[getIndex(history.pp)] : playerData?.playerInfo?.pp;
-	$: prevLabel = getPrevLabel();
 </script>
 
 {#if scoresStats}
 	<ContentBox cls="stats-and-summary-box">
 		<div class="stats-and-summary" class:edit-enabled={!!editModel}>
-			<div class="pp-and-platform">
-				<div class="pp-container">
-					<span class="pp">
-						<Value
-							value={playerData?.playerInfo?.pp}
-							suffix="pp"
-							prevValue={$configStore.profileParts.changes ? prevPp : undefined}
-							{prevLabel}
-							inline={true}
-							zero="0pp" />
-					</span>
-				</div>
-				<HeadsetAndPlatform {playerData} />
-			</div>
-
+			<HeadsetAndPlatform {playerData} />
 			<BeatLeaderSummary {playerId} {scoresStats} {accBadges} {skeleton} {profileAppearance} bind:editModel />
 		</div>
 		<div class="badges-footer">
@@ -89,22 +73,6 @@
 	.stats-and-summary {
 		display: flex;
 		gap: 0.5em 0.5em;
-	}
-	.pp {
-		font-size: 1.4em !important;
-		font-weight: 700 !important;
-		color: #fddbff !important;
-	}
-
-	.pp-container {
-		background-color: #332c36;
-		padding: 0 0.5em 1em 0.5em;
-		margin-bottom: -1em;
-		border-radius: 8px;
-		display: flex;
-		justify-content: start;
-		align-items: center;
-		width: fit-content;
 	}
 
 	:global(.stats-and-summary-box) {

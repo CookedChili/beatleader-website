@@ -23,6 +23,7 @@
 	export let name;
 	export let playerInfo;
 	export let playerId;
+	export let playerData = null;
 	export let error = null;
 	export let editModel = null;
 	export let showRedact = true;
@@ -116,6 +117,7 @@
 	$: isAdmin = $account?.player?.role?.includes('admin');
 	$: canRedact = showRedact && ((isMain && loggedInPlayer === playerId) || isAdmin);
 	$: clanOrder = playerInfo?.clans?.map(c => c.tag).join(',');
+
 
 	function getIndex(array) {
 		if (!array || array.length == 1) {
@@ -215,8 +217,9 @@
 	$: fetchAliasRequest($account);
 	$: prevLabel = getPrevLabel();
 	$: prevRank = history?.rank ? history.rank[getIndex(history.rank)] : playerInfo?.rank;
-
 	$: prevCountryRank = history?.countryRank ? history.countryRank[getIndex(history.countryRank)] : playerInfo?.countryRank;
+		$: prevPp = history?.pp ? history.pp[getIndex(history.pp)] : playerData?.playerInfo?.pp;
+
 </script>
 
 {#if showBanForm}
@@ -342,6 +345,16 @@
 					</a>
 				{/each}
 			{/if}
+
+			<div class="a">
+				<Value
+					value={playerInfo?.pp}
+					suffix="pp"
+					prevValue={$configStore.profileParts.changes ? prevPp : undefined}
+					{prevLabel}
+					inline={true}
+					zero="0pp" />
+			</div>
 
 			{#if $configStore.profileParts.clans && playerInfo?.clans?.length}
 				<div class="clan-badges">
